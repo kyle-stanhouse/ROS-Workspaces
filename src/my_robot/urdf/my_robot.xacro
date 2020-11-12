@@ -69,7 +69,7 @@
 
   </link>
   
-    <link name='left_wheel'>
+  <link name='left_wheel'>
     <inertial>
       <mass value="5.0"/>
       <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
@@ -97,7 +97,7 @@
   </link>
   
   <joint type="continuous" name="left_wheel_hinge">
-    <origin xyz="0 0.15 0" rpy="0 0 0"/>
+    <origin xyz="0 0.125 0" rpy="0 0 0"/>
     <child link="left_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -133,7 +133,7 @@
   </link>
   
   <joint type="continuous" name="right_wheel_hinge">
-    <origin xyz="0 -0.15 0" rpy="0 0 0"/>
+    <origin xyz="0 -0.125 0" rpy="0 0 0"/>
     <child link="right_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 -1 0" rpy="0 0 0"/>
@@ -141,7 +141,7 @@
     <dynamics damping="1.0" friction="1.0"/>
   </joint>  
   
-  <!-- Camera -->
+ <!-- Camera -->
   
   <link name='camera'>
     <inertial>
@@ -157,18 +157,14 @@
     <collision name='collision'>
       <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
       <geometry>
-        <box>
-          <size>.05 .05 .05</size>
-        </box>  
+        <box size=".05 .05 .05"/> 
       </geometry>
     </collision>
 
     <visual name='right_wheel_visual'>
       <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
       <geometry>
-        <box>
-          <size>.05 .05 .05</size>
-        </box>
+        <box size=".05 .05 .05"/>
       </geometry>
     </visual>
     
@@ -180,7 +176,7 @@
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
   </joint>  
-
+  
   <!-- Hokuyo Laser -->
   
   <link name="hokuyo">
@@ -194,7 +190,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://my_robot/meshes/hokuyo.dae"/>
+       <box size="0.1 0.1 0.1"/>
       </geometry>
     </visual>
 
@@ -205,11 +201,11 @@
     </inertial>
   </link>
   
-  <joint name="hokuyo_joint" type="fixed">
-    <axis xyz="0 1 0" />
+  <joint type="fixed" name="hokuyo_joint">
     <origin xyz=".15 0 .1 0 0 0" rpy="0 0 0"/>
-    <parent link="chassis"/>
     <child link="hokuyo"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" />
   </joint>
 
   
